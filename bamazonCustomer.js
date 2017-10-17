@@ -20,18 +20,8 @@ connection.connect(function(err) {
   if (err) throw err;
   //console.log("connected as id " + connection.threadId);
   //console.log("ID  Product Department  Price");
-  queryStart();
   
 });
-
-// display available items upon running app 
-function queryStart() {
-  var query = connection.query("SELECT * FROM bamazondb.products", function(err, res) {
-    for (var i = 0; i < res.length; i++) {
-      console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].department_name + " | " + res[i].customer_price);
-    }
-  })
-};
 
 // Ensure that user is entering positive numbers
 function validateInput(value) {
@@ -44,6 +34,7 @@ function validateInput(value) {
 	}
 }
 
+function promptUserPurchase() {
 // Prompt user to choose item and quantity
 inquirer.prompt([
 	{
@@ -102,4 +93,36 @@ inquirer.prompt([
     	}
     })
 
-});
+   })
+}
+
+function displayInventory() {
+	queryStr = 'SELECT * FROM bamazondb.products';
+	connection.query(queryStr, function(err, data) {
+		if(err) throw err;
+
+		console.log("Current Inventory: ");
+		console.log("...........................................................................................................\n");
+
+		var strOut = '';
+		for (var i = 0; i < data.length; i++) {
+			strOut = '';
+			strOut = 'Item ID: ' + data[i].item_id + '  //  ';
+			strOut += 'Product Name: ' + data[i].product_name + '  //  ';
+			strOut += 'Department: ' + data[i].department_name + '  //  ';
+			strOut += 'Price: $' + data[i].customer_price + '  //  ';
+			strOut += 'Quantity: ' + data[i].stock_quantity + '\n';
+
+			console.log(strOut);
+		}
+
+		console.log("-----------------------------------------------------------------------------------------------------------\n");
+		promptUserPurchase();
+	})
+};
+
+function runBamazon() {
+	displayInventory();
+}
+
+runBamazon();
