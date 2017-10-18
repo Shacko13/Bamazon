@@ -1,6 +1,6 @@
 # Bamazon
 
-## *ToddBamazon is an Amazon-like storefront using mySQL and Node.js*
+## *ToddBamazon is an Amazon-like storefront using mySQL and Node.js. This app takes in orders from customers and depletes stock from the store's inventory.*
 
 
 
