@@ -15,11 +15,10 @@ var connection = mysql.createConnection({
  console.log("Good day! Welcome to ToddBamazon!");
  console.log("-------------------------------------");
 
- // connect to mysql server and database
+ // Connect to mysql server and database
 connection.connect(function(err) {
   if (err) throw err;
   //console.log("connected as id " + connection.threadId);
-  //console.log("ID  Product Department  Price");
   
 });
 
@@ -85,6 +84,7 @@ inquirer.prompt([
     			})
 
     		} else {
+                // If quantity chosen is not available
     			console.log("Our apologies. There is not enough inventory available to fill your order. Please change your order.");
     			console.log("\n--------------------------------------\n");
 
@@ -96,6 +96,7 @@ inquirer.prompt([
    })
 }
 
+// Show current available inventory
 function displayInventory() {
 	queryStr = 'SELECT * FROM bamazondb.products';
 	connection.query(queryStr, function(err, data) {
