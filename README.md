@@ -1,7 +1,8 @@
 # Bamazon
-## *ToddBamazon*
 
-### Amazon-like storefront using Node.js and mySQL
+## *ToddBamazon is an Amazon-like storefront using mySQL ad Node.js*
+
+
 
 ![GitHub Logo](bamazon1.PNG)
 
